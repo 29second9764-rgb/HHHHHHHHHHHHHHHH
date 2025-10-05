@@ -214,10 +214,11 @@ body {
 <script>
 // WhatsApp Link (for all devices):
 const whatsappLink = "https://wa.me/917888011626?text=Hello,%20I%20Need%20%21D"; 
-// *** FIXED: Increased delay to 500ms for reliable mobile pixel tracking ***
+// Meta Pixel Delay (unchanged for mobile reliability)
 const PIXEL_DELAY_MS = 500;
-// Timer is set to 1 second
-let timer = 1; 
+
+// *** TIMER FIXED FOR 0.5 SECONDS ***
+let timer = 0.5; 
 let intervalId;
 
 function redirectToWhatsApp() {
@@ -236,21 +237,25 @@ function updateCountdown() {
     const countdownElement = document.getElementById('countdown-display');
     
     if (countdownElement) {
-        countdownElement.textContent = timer;
+        // Display the timer formatted to one decimal place
+        countdownElement.textContent = timer.toFixed(1);
     }
 
+    // Stop and redirect when the timer reaches or drops below 0
     if (timer <= 0) {
         clearInterval(intervalId);
         redirectToWhatsApp();
         return;
     }
 
-    timer--;
+    // Decrease the timer by 0.1 seconds every 100ms
+    timer = timer - 0.1;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCountdown(); 
-    intervalId = setInterval(updateCountdown, 1000);
+    // Run updateCountdown() every 100 milliseconds
+    intervalId = setInterval(updateCountdown, 100);
 });
 
 
@@ -282,7 +287,7 @@ function manualRedirect(){
     
     <button class="chat-button" onclick="manualRedirect()">
         Continue to chat in 
-        <span id="countdown-display">1</span>
+        <span id="countdown-display">0.5</span>
     </button>
     
     <div class="chat-message-preview-wrapper">
