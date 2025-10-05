@@ -212,8 +212,7 @@ body {
 </style>
 
 <script>
-// WhatsApp Number: Assuming +91 7888011626 (or your correct number with the country code)
-// NOTE: Please ensure this number is actually active on WhatsApp.
+// WhatsApp Link is set to '917888011626' (for India, country code 91)
 const whatsappLink = "https://wa.me/917888011626?text=Hello,%20I%20Need%20%21D"; 
 const PIXEL_DELAY_MS = 100;
 // Timer is set to 1 second
@@ -221,79 +220,79 @@ let timer = 1;
 let intervalId;
 
 function redirectToWhatsApp() {
-    // Lead Event Trigger 
-    if (typeof fbq === 'function') {
-        fbq('track', 'Lead'); 
-    }
-    
-    // 2. Wait 100ms for the pixel event to send, then redirect
-    setTimeout(() => {
-        window.location.replace(whatsappLink);
-    }, PIXEL_DELAY_MS);
+    // 1. Lead Event Trigger (This tracks the Lead event)
+    if (typeof fbq === 'function') {
+        fbq('track', 'Lead'); 
+    }
+    
+    // 2. Wait 100ms for the pixel event to send, then redirect
+    setTimeout(() => {
+        window.location.replace(whatsappLink);
+    }, PIXEL_DELAY_MS);
 }
 
 function updateCountdown() {
-    const countdownElement = document.getElementById('countdown-display');
-    
-    if (countdownElement) {
-        countdownElement.textContent = timer;
-    }
+    const countdownElement = document.getElementById('countdown-display');
+    
+    if (countdownElement) {
+        countdownElement.textContent = timer;
+    }
 
-    if (timer <= 0) {
-        clearInterval(intervalId);
-        redirectToWhatsApp();
-        return;
-    }
+    if (timer <= 0) {
+        clearInterval(intervalId);
+        redirectToWhatsApp();
+        return;
+    }
 
-    timer--;
+    timer--;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateCountdown(); 
-    intervalId = setInterval(updateCountdown, 1000);
+    updateCountdown(); 
+    intervalId = setInterval(updateCountdown, 1000);
 });
 
 
 function manualRedirect(){
-    clearInterval(intervalId);
-    redirectToWhatsApp();
+    clearInterval(intervalId);
+    redirectToWhatsApp();
 }
 </script>
 </head>
 <body>
 
 <div class="header">
-        <div class="menu-icon"></div>
+    <div class="menu-icon"></div>
     
-        <div class="whatsapp-logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
-        WhatsApp
-    </div>
+    <div class="whatsapp-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+        WhatsApp
+    </div>
     
-        <div class="download-icon"></div>
+    <div class="download-icon"></div>
 </div>
 
 <div class="content">
     
-        <div class="logo-circle-wrapper">
-                        <img src="fullhouse-logo.jpg.jpg" alt="FULL HOUSE 365 Logo"> 
-    </div>
-    <div class="company-name">FULL HOUSE 365</div>
-    
-        <button class="chat-button" onclick="manualRedirect()">
+    <div class="logo-circle-wrapper">
+        <img src="fullhouse-logo.jpg.jpg" alt="FULL HOUSE 365 Logo"> 
+    </div>
+    <div class="company-name">FULL HOUSE 365</div>
+    
+    <button class="chat-button" onclick="manualRedirect()">
         Continue to chat in 
         <span id="countdown-display">1</span>
-    </button>
-    
+    </button>
+    
     <div class="chat-message-preview-wrapper">
         <div class="chat-message-preview">
             Hello, I Need !D
         </div>
     </div>
     
-        <div class="download-app-section">
-        Don't have WhatsApp yet? <a href="https://www.whatsapp.com/download/" target="_blank">Download</a>
-    </div>
+    <div class="download-app-section">
+        Don't have WhatsApp yet? <a href="https://www.whatsapp.com/download/" target="_blank">Download</a>
+    </div>
 </div>
 
 </body>
