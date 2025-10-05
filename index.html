@@ -19,7 +19,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 
-// Initializes the Pixel with the new ID
+// Initializes the Pixel and sends the PageView event
 fbq('init', '777509118259514');
 fbq('track', 'PageView'); 
 </script>
@@ -214,19 +214,19 @@ body {
 <script>
 // WhatsApp Link (for all devices):
 const whatsappLink = "https://wa.me/917888011626?text=Hello,%20I%20Need%20%21D"; 
-// *** CRITICAL FIX: Increased delay from 100ms to 500ms for reliable mobile pixel tracking ***
+// *** FIXED: Increased delay to 500ms for reliable mobile pixel tracking ***
 const PIXEL_DELAY_MS = 500;
 // Timer is set to 1 second
 let timer = 1; 
 let intervalId;
 
 function redirectToWhatsApp() {
-    // 1. Lead Event Trigger (This tracks the Lead event)
+    // 1. Lead Event Trigger
     if (typeof fbq === 'function') {
         fbq('track', 'Lead'); 
     }
     
-    // 2. Wait 500ms for the pixel event to send, then redirect
+    // 2. Wait 500ms for the pixel event to finish sending, then redirect
     setTimeout(() => {
         window.location.replace(whatsappLink);
     }, PIXEL_DELAY_MS);
