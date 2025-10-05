@@ -212,9 +212,10 @@ body {
 </style>
 
 <script>
-// WhatsApp Link is set to '917888011626' (for India, country code 91)
+// WhatsApp Link (for all devices):
 const whatsappLink = "https://wa.me/917888011626?text=Hello,%20I%20Need%20%21D"; 
-const PIXEL_DELAY_MS = 100;
+// *** CRITICAL FIX: Increased delay from 100ms to 500ms for reliable mobile pixel tracking ***
+const PIXEL_DELAY_MS = 500;
 // Timer is set to 1 second
 let timer = 1; 
 let intervalId;
@@ -225,7 +226,7 @@ function redirectToWhatsApp() {
         fbq('track', 'Lead'); 
     }
     
-    // 2. Wait 100ms for the pixel event to send, then redirect
+    // 2. Wait 500ms for the pixel event to send, then redirect
     setTimeout(() => {
         window.location.replace(whatsappLink);
     }, PIXEL_DELAY_MS);
